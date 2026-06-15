@@ -2,7 +2,7 @@
 
 A lightweight desktop widget that monitors a remote AI server and local machine metrics. Built with GTK3 + WebKit2, it runs as a true background widget on GNOME — no dock indicator, no taskbar entry, always behind other windows.
 
-![Widget showing CPU, GPU, memory, disk and network stats for a remote AI server and local machine]
+![Widget showing CPU, GPU, memory, disk and network stats for a remote AI server and local machine](screenshots/screenshot.png)
 
 ## Features
 
