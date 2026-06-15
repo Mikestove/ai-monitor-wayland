@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="monitor">
+
+    <!-- ── Remote server ── -->
+    <div class="section header-section">
+      <div class="header-row">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="header-title">AI SERVER</span>
+      </div>
+      <div class="header-host" id="hostname">connecting...</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label cpu-color">CPU</span>
+        <span class="metric-value" id="cpu-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill cpu-fill" id="cpu-bar"></div>
+      </div>
+      <div class="metric-sub right" id="cpu-temp">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label gpu-color">GPU</span>
+        <span class="metric-value" id="gpu-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill gpu-fill" id="gpu-bar"></div>
+      </div>
+      <div class="metric-sub">
+        <span id="gpu-name" class="dim">—</span>
+        <span id="gpu-temp">—</span>
+      </div>
+      <div class="metric-header sub-header">
+        <span class="metric-label sub-label">VRAM</span>
+        <span class="metric-value" id="gpu-vram-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill vram-fill" id="vram-bar"></div>
+      </div>
+      <div class="metric-sub">
+        <span id="gpu-vram">—</span>
+        <span id="gpu-power">—</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label mem-color">MEMORY</span>
+        <span class="metric-value" id="mem-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill mem-fill" id="mem-bar"></div>
+      </div>
+      <div class="metric-sub right" id="mem-usage">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label disk-color">DISK</span>
+        <span class="metric-value" id="disk-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill disk-fill" id="disk-bar"></div>
+      </div>
+      <div class="metric-sub right" id="disk-usage">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-label net-color">NETWORK</div>
+      <div class="net-row">
+        <span class="net-arrow up-color">↑</span>
+        <span class="net-value" id="net-up">—</span>
+      </div>
+      <div class="net-row">
+        <span class="net-arrow dn-color">↓</span>
+        <span class="net-value" id="net-down">—</span>
+      </div>
+    </div>
+
+    <!-- ── Local machine ── -->
+    <div class="divider section-gap"></div>
+
+    <div class="section header-section">
+      <div class="header-row">
+        <span class="status-dot online"></span>
+        <span class="header-title">THIS MACHINE</span>
+      </div>
+      <div class="header-host" id="local-hostname">—</div>
+    </div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label cpu-color">CPU</span>
+        <span class="metric-value" id="local-cpu-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill cpu-fill" id="local-cpu-bar"></div>
+      </div>
+      <div class="metric-sub right" id="local-cpu-temp">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label mem-color">MEMORY</span>
+        <span class="metric-value" id="local-mem-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill mem-fill" id="local-mem-bar"></div>
+      </div>
+      <div class="metric-sub right" id="local-mem-usage">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-header">
+        <span class="metric-label disk-color">DISK</span>
+        <span class="metric-value" id="local-disk-pct">—</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill disk-fill" id="local-disk-bar"></div>
+      </div>
+      <div class="metric-sub right" id="local-disk-usage">—</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="metric-label net-color">NETWORK</div>
+      <div class="net-row">
+        <span class="net-arrow up-color">↑</span>
+        <span class="net-value" id="local-net-up">—</span>
+      </div>
+      <div class="net-row">
+        <span class="net-arrow dn-color">↓</span>
+        <span class="net-value" id="local-net-down">—</span>
+      </div>
+    </div>
+
+  </div>
+  <script src="themes.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

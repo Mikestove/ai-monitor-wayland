@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="header-icon">◈</div>
+      <div>
+        <div class="header-title">AI Monitor</div>
+        <div class="header-sub">Settings</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="section">
+        <div class="section-label">CONNECTION</div>
+        <div class="field">
+          <label for="serverUrl">Server URL</label>
+          <input type="text" id="serverUrl" placeholder="http://100.x.x.x:7070" spellcheck="false">
+          <div class="field-hint">Tailscale IP or hostname of your AI server</div>
+        </div>
+        <div class="field">
+          <label for="pollInterval">Poll interval — <span id="pollDisplay">3</span>s</label>
+          <input type="range" id="pollInterval" min="1" max="10" step="1" value="3">
+        </div>
+        <div class="field toggle-field">
+          <div>
+            <label for="autostart">Start on boot</label>
+            <div class="field-hint">Launch widget automatically when you log in</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="autostart">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">APPEARANCE</div>
+        <div class="field">
+          <label for="width">Widget width — <span id="widthDisplay">240</span>px</label>
+          <input type="range" id="width" min="200" max="320" step="10" value="240">
+        </div>
+        <div class="field">
+          <label for="opacity">Background opacity — <span id="opacityDisplay">87</span>%</label>
+          <input type="range" id="opacity" min="40" max="97" step="1" value="87">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">THEME</div>
+
+        <div id="theme-picker" class="theme-picker"></div>
+
+        <div class="theme-editor">
+          <div class="editor-header">
+            <span class="editor-title" id="editor-title">Edit Theme</span>
+            <button id="deleteThemeBtn" class="btn-icon-danger" style="display:none" title="Delete theme">✕ Delete</button>
+          </div>
+
+          <div class="field">
+            <label for="theme-name">Theme name</label>
+            <input type="text" id="theme-name" placeholder="My Custom Theme">
+          </div>
+
+          <div class="color-grid">
+            <div class="color-row">
+              <label>Background</label>
+              <input type="color" id="tc-bg" value="#080a12">
+            </div>
+            <div class="color-row">
+              <label>Text</label>
+              <input type="color" id="tc-text" value="#e2e8f0">
+            </div>
+            <div class="color-row">
+              <label>Subtext</label>
+              <input type="color" id="tc-subtext" value="#94a3b8">
+            </div>
+            <div class="color-row">
+              <label>CPU</label>
+              <input type="color" id="tc-cpu" value="#38bdf8">
+            </div>
+            <div class="color-row">
+              <label>GPU</label>
+              <input type="color" id="tc-gpu" value="#fb923c">
+            </div>
+            <div class="color-row">
+              <label>Memory</label>
+              <input type="color" id="tc-mem" value="#a78bfa">
+            </div>
+            <div class="color-row">
+              <label>Network ↑</label>
+              <input type="color" id="tc-up" value="#4ade80">
+            </div>
+            <div class="color-row">
+              <label>Network ↓</label>
+              <input type="color" id="tc-dn" value="#22d3ee">
+            </div>
+          </div>
+
+          <button id="saveThemeBtn" class="btn-secondary">Save as Custom Theme</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button id="quitBtn" class="btn-danger">Quit</button>
+      <div id="status" class="status"></div>
+      <button id="saveBtn" class="btn-primary">Save &amp; Apply</button>
+    </div>
+
+  </div>
+
+  <script src="themes.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+:root {
+  /* All --bg, --text-1, --text-2, accent vars are set live by renderer.js */
+  --bg:         rgba(8, 10, 18, 0.87);
+  --divider:    rgba(255, 255, 255, 0.06);
+  --bar-track:  rgba(255, 255, 255, 0.08);
+
+  --text-1:  #e2e8f0;
+  --text-2:  #94a3b8;
+  --text-3:  #475569;
+
+  --cpu:    #38bdf8;
+  --gpu:    #fb923c;
+  --mem:    #a78bfa;
+  --up:     #4ade80;
+  --dn:     #22d3ee;
+  --online: #22c55e;
+  --offline:#ef4444;
+
+  --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+}
+
+.monitor {
+  width: 100%;
+  height: 100vh;
+  background: var(--bg);
+  border-right: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  /* frosted glass — works when compositor supports it */
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--divider);
+  flex-shrink: 0;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.header-section {
+  padding: 22px 16px 16px;
+  gap: 5px;
+}
+
+/* ── Header ── */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--offline);
+  flex-shrink: 0;
+  transition: background 0.4s;
+  box-shadow: 0 0 6px var(--offline);
+}
+.status-dot.online {
+  background: var(--online);
+  box-shadow: 0 0 6px var(--online);
+}
+
+.header-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--text-1);
+}
+
+.header-host {
+  font-size: 10px;
+  color: var(--text-3);
+  margin-left: 17px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Metric rows ── */
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.metric-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.metric-sub {
+  font-size: 10px;
+  color: var(--text-2);
+  display: flex;
+  justify-content: space-between;
+}
+.metric-sub.right { justify-content: flex-end; }
+
+.dim { color: var(--text-3); }
+
+/* ── Progress bars ── */
+.bar-track {
+  height: 5px;
+  background: var(--bar-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 3px;
+  transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cpu-fill  { background: var(--cpu); box-shadow: 0 0 8px color-mix(in srgb, var(--cpu) 50%, transparent); }
+.gpu-fill  { background: var(--gpu); box-shadow: 0 0 8px color-mix(in srgb, var(--gpu) 50%, transparent); }
+.mem-fill  { background: var(--mem); box-shadow: 0 0 8px color-mix(in srgb, var(--mem) 50%, transparent); }
+.vram-fill { background: color-mix(in srgb, var(--gpu) 60%, var(--mem)); }
+.disk-fill { background: var(--disk); box-shadow: 0 0 8px color-mix(in srgb, var(--disk) 50%, transparent); }
+
+/* ── Color classes ── */
+.cpu-color  { color: var(--cpu); }
+.gpu-color  { color: var(--gpu); }
+.mem-color  { color: var(--mem); }
+.disk-color { color: var(--disk); }
+.net-color  { color: var(--up); }
+
+/* ── Network ── */
+.net-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.net-arrow {
+  font-size: 13px;
+  font-weight: 700;
+  width: 13px;
+  flex-shrink: 0;
+}
+
+.net-value {
+  font-size: 11px;
+  color: var(--text-1);
+  letter-spacing: 0.3px;
+}
+
+.up-color { color: var(--up); }
+.dn-color { color: var(--dn); }
+
+/* ── Sub-metric header (VRAM) ── */
+.sub-header { margin-top: 4px; }
+.sub-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-3);
+}
+
+/* Extra breathing room between remote and local halves */
+.section-gap {
+  margin-top: 6px;
+  background: color-mix(in srgb, var(--text-1) 12%, transparent);
+}
+
+/* ── Footer / settings button ── */
+.spacer { flex: 1; }
+
+.footer {
+  padding: 10px 12px;
+  border-top: 1px solid var(--divider);
+  flex-shrink: 0;
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  opacity: 0.35;
+}
+
+.settings-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--divider);
+  opacity: 1;
+}
+
+.settings-icon {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.settings-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--text-2);
+}
